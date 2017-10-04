@@ -15,7 +15,7 @@ import javax.sql.DataSource;
 public class BukuDao {
     //File Untuk perintah SQL ke database Table Buku
     
-    public void save() throws SQLException{
+    public void save(Buku buku) throws SQLException{
         KoneksiDatabase koneksiDB = new KoneksiDatabase();
         DataSource datasource = koneksiDB.getDataSource();
         Connection connection = datasource.getConnection();
@@ -24,10 +24,10 @@ public class BukuDao {
         String sql = "INSERT INTO perpus.buku (judul_buku, tahun_terbit, pengarang, jumlah_buku) VALUES (?, ?, ?, ?)";
         PreparedStatement statement = connection.prepareStatement(sql);
         
-        statement.setString(1, "Belajar Java Koding");
-        statement.setInt(2, 2017);
-        statement.setString(3, "Asal Aja");
-        statement.setInt(4, 4);
+        statement.setString(1, buku.getJudulBuku());
+        statement.setInt(2, buku.getTahunTerbit());
+        statement.setString(3, buku.getPengarang());
+        statement.setInt(4, buku.getJumlahBuku());
         
         statement.executeUpdate();
         statement.close();

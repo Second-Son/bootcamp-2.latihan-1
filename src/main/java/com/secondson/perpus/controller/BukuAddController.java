@@ -5,8 +5,12 @@
  */
 package com.secondson.perpus.controller;
 
+import com.secondson.perpus.dao.BukuDao;
 import com.secondson.perpus.model.Buku;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,7 +36,14 @@ public class BukuAddController extends HttpServlet{
         buku.setTahunTerbit(Integer.valueOf(req.getParameter("tahunTerbit")));
         buku.setPengarang(req.getParameter("pengarang"));
         buku.setJumlahBuku(Integer.valueOf(req.getParameter("jumlahBuku")));
-        System.out.println(buku.toString());
+        //System.out.println(buku.toString());
+        
+        BukuDao bukuDao = new BukuDao();
+        try {
+            bukuDao.save(buku);
+        } catch (SQLException ex) {
+            Logger.getLogger(BukuAddController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }
