@@ -13,6 +13,8 @@ import lombok.Data;
  */
 @Data
 public class Buku {
+
+    public static Buku buku;
     private Integer id;
     private String judulBuku;
     private Integer tahunTerbit;
