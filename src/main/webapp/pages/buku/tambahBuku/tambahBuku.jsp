@@ -12,28 +12,30 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <center>
+        <h1>Tambah Buku</h1>
         <form action="${pageContext.servletContext.contextPath}/buku/new" method="post">
             <div>
-                <label for="judulBuku">Judul Buku :</label>
+                <label for="judulBuku"><b>Judul Buku :</b></label><br>
                 <input type="text" name="judulBuku" id="judulBuku"/>
-            </div>
+            </div><br>
             <div>
-                <label for="tahunTerbit">Tahun Terbit :</label>
+                <label for="tahunTerbit"><b>Tahun Terbit :</b></label><br>
                 <input type="number" name="tahunTerbit" id="tahunTerbit"/>
-            </div>
+            </div><br>
             <div>
-                <label for="pengarang">Pengarang :</label>
+                <label for="pengarang"><b>Pengarang :</b></label><br>
                 <input type="text" name="pengarang" id="pengarang"/>
-            </div>
+            </div><br>
             <div>
-                <label for="jumlahBuku">Jumlah Buku :</label>
+                <label for="jumlahBuku"><b>Jumlah Buku :</b></label><br>
                 <input type="number" name="jumlahBuku" id="jumlahBuku"/>
-            </div>
+            </div><br>
             <div>
                 <button type="submit">Kirim</button>
                 <button type="reset">Reset</button>
             </div>
         </form>
+        </center>
     </body>
 </html>

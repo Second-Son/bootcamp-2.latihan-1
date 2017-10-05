@@ -35,7 +35,7 @@
                     <td align=center>${sebuahBuku.jumlahBuku}</td>
                     <td align=center>${sebuahBuku.pengarang}</td>
                     <td align=center>
-                            <a href="${pageContext.servletContext.contextPath}/buku/edit?kodeBuku=${sebuahBuku.id}">Edit</a>
+                        <a href="${pageContext.servletContext.contextPath}/buku/edit?kodeBuku=${sebuahBuku.id}">Edit</a>
                         <a href="${pageContext.servletContext.contextPath}/buku/delete?kodeBuku=${sebuahBuku.id}">Hapus</a>
                     </td>
                 </tr>

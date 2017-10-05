@@ -37,10 +37,6 @@ public class BukuDao {
         connection.close();
     }
     
-    public void update(){
-    
-    }
-    
     public void delete(Integer idBuku) throws SQLException{
         KoneksiDatabase koneksiDatabase = new KoneksiDatabase();
         DataSource datasource = koneksiDatabase.getDataSource();
@@ -85,7 +81,49 @@ public class BukuDao {
         return listBuku;
     }
     
-    public Buku findById(Integer idBuku){
-        return null;
+    public Buku findById(Integer idBuku) throws SQLException{
+        
+        KoneksiDatabase koneksiDatabase = new KoneksiDatabase();
+        DataSource datasource = koneksiDatabase.getDataSource();
+        Connection connection = datasource.getConnection();
+        
+        String sql = "select id, judul_buku, tahun_terbit, pengarang, jumlah_buku from perpus.buku where id = ?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1, idBuku);
+        ResultSet resultSet = statement.executeQuery();
+        
+        Buku buku = new Buku();
+        if (resultSet.next()){
+            buku.setId(resultSet.getInt("id"));
+            buku.setJudulBuku(resultSet.getString("judul_buku")); //ini mengambil dari Field "judul_buku" tabel database
+            buku.setTahunTerbit(resultSet.getInt("tahun_terbit"));
+            buku.setPengarang(resultSet.getString("pengarang"));
+            buku.setJumlahBuku(resultSet.getInt("jumlah_buku"));
+        }
+        
+        resultSet.close();
+        statement.close();
+        connection.close();
+        return buku;
+    }
+
+    public void update(Buku buku) throws SQLException {
+        KoneksiDatabase koneksiDB = new KoneksiDatabase();
+        DataSource datasource = koneksiDB.getDataSource();
+        Connection connection = datasource.getConnection();
+        
+        //language=PostgreSQL
+        String sql = "UPDATE perpus.buku SET judul_buku = ?, tahun_terbit = ?, pengarang = ?, jumlah_buku = ? WHERE id = ?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        
+        statement.setString(1, buku.getJudulBuku());
+        statement.setInt(2, buku.getTahunTerbit());
+        statement.setString(3, buku.getPengarang());
+        statement.setInt(4, buku.getJumlahBuku());
+        statement.setInt(5, buku.getId());
+        
+        statement.executeUpdate();
+        statement.close();
+        connection.close();
     }
 }
