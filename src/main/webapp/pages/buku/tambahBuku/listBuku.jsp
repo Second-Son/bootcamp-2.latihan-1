@@ -35,8 +35,8 @@
                     <td align=center>${sebuahBuku.jumlahBuku}</td>
                     <td align=center>${sebuahBuku.pengarang}</td>
                     <td align=center>
-                        <button type="submit">Edit</button>
-                        <button type="reset">Delete</button>
+                            <a href="${pageContext.servletContext.contextPath}/buku/edit?kodeBuku=${sebuahBuku.id}">Edit</a>
+                        <a href="${pageContext.servletContext.contextPath}/buku/delete?kodeBuku=${sebuahBuku.id}">Hapus</a>
                     </td>
                 </tr>
             </c:forEach>

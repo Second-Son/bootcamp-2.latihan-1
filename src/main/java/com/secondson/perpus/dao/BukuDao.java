@@ -41,7 +41,22 @@ public class BukuDao {
     
     }
     
-    public void delete(){}
+    public void delete(Integer idBuku) throws SQLException{
+        KoneksiDatabase koneksiDatabase = new KoneksiDatabase();
+        DataSource datasource = koneksiDatabase.getDataSource();
+        Connection connection = datasource.getConnection();
+        
+        String sql = "delete from perpus.buku where id = ?";
+        
+        PreparedStatement statement = connection.prepareStatement(sql);
+
+        statement.setInt(1, idBuku);
+        
+        statement.executeUpdate();
+        statement.close();
+        connection.close();
+        
+    }
     
     public List<Buku> findAll() throws SQLException{
         List<Buku> listBuku = new ArrayList<>();
@@ -55,7 +70,7 @@ public class BukuDao {
         
         while (resultSet.next()){
             Buku buku = new Buku();
-            //buku.setId(resultSet.getInt("id"));
+            buku.setId(resultSet.getInt("id"));
             buku.setJudulBuku(resultSet.getString("judul_buku")); //ini mengambil dari Field "judul_buku" tabel database
             buku.setTahunTerbit(resultSet.getInt("tahun_terbit"));
             buku.setPengarang(resultSet.getString("pengarang"));
