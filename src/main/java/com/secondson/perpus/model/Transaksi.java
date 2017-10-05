@@ -15,7 +15,7 @@ import lombok.Data;
 public class Transaksi {
     private Integer id;
     private Buku buku;
-    private Buku pengunjung;
+    private Pengunjung pengunjung;
     private Date tanggalPinjam;
     private Date tanggalKembali; 
     

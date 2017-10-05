@@ -5,13 +5,17 @@
  */
 package com.secondson.perpus.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  *
  * @author iyus
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Buku {
 
     public static Buku buku;
